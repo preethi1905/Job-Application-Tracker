@@ -12,6 +12,61 @@ A production-grade RESTful API engineered with **FastAPI**, **PostgreSQL**, and 
 This project seamlessly complements the **AI Smart Resume Builder**, extending the candidate workflow from resume composition to application pipeline management and automated keyword gap analysis.
 
 ---
+## 🏗️ Architecture & Relational Schema
+
+```mermaid
+erDiagram
+    USERS ||--o{ APPLICATIONS : "submits"
+    COMPANIES ||--o{ APPLICATIONS : "associated_with"
+    APPLICATIONS ||--o{ STATUS_HISTORY : "tracks"
+
+    USERS {
+        int id PK
+        string email UK "Indexed"
+        string hashed_password
+        string full_name
+        text resume_text
+        boolean is_active
+        datetime created_at
+        datetime updated_at
+    }
+
+    COMPANIES {
+        int id PK
+        string name UK "Indexed"
+        string website
+        string location
+        string industry
+        datetime created_at
+    }
+
+    APPLICATIONS {
+        int id PK
+        int user_id FK "Indexed"
+        int company_id FK "Indexed"
+        string job_title "Indexed"
+        text job_description
+        enum status "Applied, Interview, Offer, Rejected"
+        string location
+        decimal salary_min
+        decimal salary_max
+        string currency
+        string job_url
+        text notes
+        date applied_date "Indexed"
+        datetime created_at
+        datetime updated_at
+    }
+
+    STATUS_HISTORY {
+        int id PK
+        int application_id FK "Indexed"
+        string old_status
+        string new_status
+        text notes
+        datetime changed_at "Indexed"
+    }
+```
 
 ## 🚀 Core Features
 
