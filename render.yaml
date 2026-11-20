@@ -1,0 +1,29 @@
+services:
+  # FastAPI Web Service
+  - type: web
+    name: job-tracker-api
+    runtime: python
+    plan: free
+    region: oregon
+    buildCommand: pip install --upgrade pip && pip install -r requirements.txt && alembic upgrade head
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: job-tracker-postgres
+          property: connectionString
+      - key: SECRET_KEY
+        generateValue: true
+      - key: ENVIRONMENT
+        value: production
+      - key: ACCESS_TOKEN_EXPIRE_MINUTES
+        value: 10080
+
+databases:
+  # Managed PostgreSQL Database on Render
+  - name: job-tracker-postgres
+    databaseName: job_tracker
+    user: job_tracker_user
+    plan: free
+    region: oregon
