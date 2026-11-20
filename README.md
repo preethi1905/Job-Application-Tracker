@@ -23,64 +23,6 @@ This project seamlessly complements the **AI Smart Resume Builder**, extending t
 
 ---
 
-## 🏗️ Architecture & Relational Schema
-
-```mermaid
-erDiagram
-    USERS ||--o{ APPLICATIONS : "submits"
-    COMPANIES ||--o{ APPLICATIONS : "associated_with"
-    APPLICATIONS ||--o{ STATUS_HISTORY : "tracks"
-
-    USERS {
-        int id PK
-        string email UK "Indexed"
-        string hashed_password
-        string full_name
-        text resume_text
-        boolean is_active
-        datetime created_at
-        datetime updated_at
-    }
-
-    COMPANIES {
-        int id PK
-        string name UK "Indexed"
-        string website
-        string location
-        string industry
-        datetime created_at
-    }
-
-    APPLICATIONS {
-        int id PK
-        int user_id FK "Indexed"
-        int company_id FK "Indexed"
-        string job_title "Indexed"
-        text job_description
-        enum status "Applied, Interview, Offer, Rejected"
-        string location
-        decimal salary_min
-        decimal salary_max
-        string currency
-        string job_url
-        text notes
-        date applied_date "Indexed"
-        datetime created_at
-        datetime updated_at
-    }
-
-    STATUS_HISTORY {
-        int id PK
-        int application_id FK "Indexed"
-        string old_status
-        string new_status
-        text notes
-        datetime changed_at "Indexed"
-    }
-```
-
----
-
 ## 🚀 Core Features
 
 ### 1. Authentication & Security
@@ -225,20 +167,3 @@ This project is configured for one-click deployment via **Render Blueprints** (`
 5. Your live API will be instantly reachable at `https://<your-service>.onrender.com/docs`.
 
 ---
-
-## 📄 Resume Entry
-
-Add this bulleted section to your resume to showcase full-stack backend and AI competencies:
-
-```markdown
-Job Application Tracker API | Python, FastAPI, PostgreSQL, SQLAlchemy, Alembic, Docker, GitHub Actions | GitHub
-• Built a REST API with FastAPI and PostgreSQL featuring JWT authentication, full CRUD, filtering and pagination for job applications.
-• Designed a relational schema with SQLAlchemy and Alembic migrations, and SQL aggregation queries for application status analytics.
-• Added an AI endpoint that scores resume-to-job-description match and lists missing keywords.
-• Wrote pytest tests, containerised the app with Docker, and set up GitHub Actions CI with deployment on Render.
-```
-
----
-
-## 📜 License
-MIT License. Created by Preethi Prabhakaran.
