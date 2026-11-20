@@ -13,16 +13,6 @@ This project seamlessly complements the **AI Smart Resume Builder**, extending t
 
 ---
 
-## 📌 Missing JD Keywords Covered
-- **FastAPI**: Modern, high-performance web framework with asynchronous support, dependency injection, and automatic OpenAPI / Swagger documentation.
-- **Python**: Clean, modular Python 3.12 implementation adhering to PEP 8 standards and strict type annotations.
-- **SQL & PostgreSQL**: Normalized relational schema, foreign key constraints, indexes, and complex aggregation queries (`GROUP BY`, `CASE`, window/date functions).
-- **REST APIs**: Full CRUD architecture with standard HTTP status codes, structured error payloads, filtering, sorting, and pagination.
-- **Git & GitHub Actions**: Automated CI/CD pipeline executing test suites against a containerized PostgreSQL service on push and PR.
-- **Docker & Docker Compose**: Multi-stage containerization for seamless local setup and cloud deployment.
-
----
-
 ## 🚀 Core Features
 
 ### 1. Authentication & Security
